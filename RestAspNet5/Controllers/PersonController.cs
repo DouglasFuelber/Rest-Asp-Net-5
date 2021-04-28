@@ -5,8 +5,9 @@ using RestAspNet5.Services;
 
 namespace RestAspNet5.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class PersonController : ControllerBase
     {
         private readonly ILogger<PersonController> _logger;

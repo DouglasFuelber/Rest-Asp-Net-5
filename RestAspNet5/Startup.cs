@@ -29,6 +29,8 @@ namespace RestAspNet5
             var connectionString = Configuration["MySQLConnection:MySQLConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connectionString));
 
+            services.AddApiVersioning();
+
             services.AddScoped<IPersonService, PersonServiceImplementation>();
 
             services.AddSwaggerGen(c =>

@@ -6,29 +6,29 @@ using System.Linq;
 
 namespace RestAspNet5.Repository.Implementations
 {
-    public class BookRepositoryImplementation : IBookRepository
+    public class PersonRepositoryImplementation : IPersonRepository
     {
         private MySQLContext _context;
 
-        public BookRepositoryImplementation(MySQLContext context) {
+        public PersonRepositoryImplementation(MySQLContext context) {
             _context = context;
         }
 
-        public List<Book> FindAll()
+        public List<Person> FindAll()
         {
-            return _context.Book.ToList();
+            return _context.Person.ToList();
         }
 
-        public Book FindById(long id)
+        public Person FindById(long id)
         {
-            return _context.Book.SingleOrDefault(p => p.Id.Equals(id));
+            return _context.Person.SingleOrDefault(p => p.Id.Equals(id));
         }
 
-        public Book Create(Book book)
+        public Person Create(Person person)
         {
             try
             {
-                _context.Book.Add(book);
+                _context.Person.Add(person);
                 _context.SaveChanges();
             }
             catch (Exception)
@@ -36,19 +36,19 @@ namespace RestAspNet5.Repository.Implementations
                 throw;
             }
 
-            return book;
+            return person;
         }
 
-        public Book Update(Book book)
+        public Person Update(Person person)
         {
-            if (!Exists(book.Id)) return null;
+            if (!Exists(person.Id)) return null;
 
-            Book bookDb = _context.Book.SingleOrDefault(p => p.Id.Equals(book.Id));
+            Person personDb = _context.Person.SingleOrDefault(p => p.Id.Equals(person.Id));
 
-            if (bookDb != null) {
+            if (personDb != null) {
                 try
                 {
-                    _context.Entry(bookDb).CurrentValues.SetValues(book);
+                    _context.Entry(personDb).CurrentValues.SetValues(person);
                     _context.SaveChanges();
                 }
                 catch (Exception)
@@ -57,18 +57,18 @@ namespace RestAspNet5.Repository.Implementations
                 }
             }
 
-            return book;
+            return person;
         }
 
         public void Delete(long id)
         {
-            Book bookDb = _context.Book.SingleOrDefault(p => p.Id.Equals(id));
+            Person personDb = _context.Person.SingleOrDefault(p => p.Id.Equals(id));
 
-            if (bookDb != null)
+            if (personDb != null)
             {
                 try
                 {
-                    _context.Book.Remove(bookDb);
+                    _context.Person.Remove(personDb);
                     _context.SaveChanges();
                 }
                 catch (Exception)
@@ -80,7 +80,7 @@ namespace RestAspNet5.Repository.Implementations
 
         public bool Exists(long id)
         {
-            return _context.Book.Any(p => p.Id.Equals(id));
+            return _context.Person.Any(p => p.Id.Equals(id));
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using RestAspNet5.Model.Base;
+using System;
 
 namespace RestAspNet5.Model
 {
-    public class Book
+    public class Book : BaseEntity
     {
-        public long Id { get; set; }
         public string Author { get; set; }
         public DateTime LaunchDate { get; set; }
         public decimal Price { get; set; }

@@ -41,7 +41,7 @@ namespace RestAspNet5.Repository.Implementations
 
         public Person Update(Person person)
         {
-            if (!Exists(person.Id)) return new Person();
+            if (!Exists(person.Id)) return null;
 
             Person personDb = _context.Person.SingleOrDefault(p => p.Id.Equals(person.Id));
 

@@ -14,6 +14,7 @@ namespace RestAspNet5.Business.Implementations
         public BookBusinessImplementation(IRepository<Book> repository)
         {
             _repository = repository;
+            _converter = new BookConverter();
         }
 
         public List<BookVO> FindAll()

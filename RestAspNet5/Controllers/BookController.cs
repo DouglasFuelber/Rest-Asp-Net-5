@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using RestAspNet5.Business;
 using RestAspNet5.Data.VO;
+using RestAspNet5.Hypermedia.Filters;
 
 namespace RestAspNet5.Controllers
 {
@@ -20,12 +21,14 @@ namespace RestAspNet5.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_bookBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             BookVO book = _bookBusiness.FindById(id);
@@ -36,6 +39,7 @@ namespace RestAspNet5.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Create([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
@@ -44,6 +48,7 @@ namespace RestAspNet5.Controllers
         }
 
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Update([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();

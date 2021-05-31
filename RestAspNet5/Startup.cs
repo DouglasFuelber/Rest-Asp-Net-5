@@ -71,7 +71,15 @@ namespace RestAspNet5
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestAspNet5", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Title = "Rest AspNet 5 Tutorial",
+                    Version = "v1",
+                    Description = "API developed with Rest AspNet 5 Tutorial",
+                    Contact = new OpenApiContact {
+                        Name = "Douglas Felipe Fuelber",
+                        Url = new Uri("https://www.douglasfuelber.com")
+                    }
+                });
             });
         }
 
@@ -82,7 +90,7 @@ namespace RestAspNet5
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestAspNet5 v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rest AspNet 5 v1"));
             }
 
             app.UseHttpsRedirection();
